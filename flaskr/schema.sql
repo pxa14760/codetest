@@ -1,0 +1,49 @@
+DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS post;
+DROP TABLE IF EXISTS drink;
+DROP TABLE IF EXISTS sandwich;
+DROP TABLE IF EXISTS retail;
+
+CREATE TABLE user (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  username TEXT UNIQUE NOT NULL,
+  password TEXT NOT NULL
+);
+
+CREATE TABLE post (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  author_id INTEGER NOT NULL,
+  created TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  title TEXT NOT NULL,
+  body TEXT NOT NULL,
+  FOREIGN KEY (author_id) REFERENCES user (id)
+);
+
+CREATE TABLE drink (
+  id INTEGER PRIMARY KEY,
+  category TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  rewards_scheme TEXT NOT NULL,
+  rewards_points INTEGER NOT NULL,
+  drink_name TEXT NOT NULL,
+  drink_size TEXT NOT NULL
+);
+
+CREATE TABLE sandwich (
+  id INTEGER PRIMARY KEY,
+  category TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  rewards_scheme TEXT NOT NULL,
+  rewards_points INTEGER NOT NULL,
+  sandwich_name TEXT NOT NULL,
+  addons VARCHAR NOT NULL
+);
+
+CREATE TABLE retail (
+  id INTEGER PRIMARY KEY,
+  category TEXT NOT NULL,
+  price INTEGER NOT NULL,
+  rewards_scheme TEXT NOT NULL,
+  rewards_points INTEGER NOT NULL,
+  retail_name TEXT NOT NULL
+);
